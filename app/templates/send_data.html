@@ -1,0 +1,24 @@
+<html>
+<meta charset="utf-8">
+  <title>Образец отправки формы с телефоном</title>
+  <style>
+   .center {
+    width: 800px; /* Ширина элемента в пикселах */
+    padding: 40px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+    background: #c9cfcc; /* Цвет фона */
+   }
+  </style>
+ </head>
+   <body>
+   <div class="center">
+      <form action = "http://localhost:5000/form" method = "POST">
+         <p>Номер телефона клиента в формате 7XXXXXXXXXX <input type = "text" name = "phone" /></p>
+         <p>Код мобильного оператора <input type = "text" name = "code" /></p>
+         <p>Тег (произвольная метка) <input type = "text" name = "tag" /></p>
+         <p>Часовой пояс <input type ="text" name = "UTC" /></p>
+         <p><input type = "submit" value = " Submit " /></p>
+      </form>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <title>Образец  формы</title>
+  <style>
+   .center {
+    width: 600px; /* Ширина элемента в пикселах */
+    padding: 40px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+    background: #c9cfcc; /* Цвет фона */
+   }
+  </style>
+ </head>
+   <body>
+   <div class="center">
+
+      <table border = 1>
+         {% for key, value in result.items() %}
+            <tr>
+               <th> {{ key }} </th>
+               <td> {{ value }} </td>
+            </tr>
+         {% endfor %}
+
+      </table>
+      <form action = "https://probe.fbrq.cloud/vi/send/{id}" method = "POST">
+         <h1>Текст сообщения для доставки клиенту <input type = "text" name = "message" /></h1>
+         <h1>id клиента <input type = "text" name = "id" /></h1>
+          <p><input type = "submit" value = " Submit " /></p>
+      </form>
+      </div>
+   </body>
+</html>
