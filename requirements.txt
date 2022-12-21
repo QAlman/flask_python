@@ -9,3 +9,7 @@ MarkupSafe==1.1.1
 Pygments==2.4.2
 PyYAML==5.1.2
 Werkzeug==0.16.0
+SQLAlchemy==1.4.45
+numpy==1.24.0
+pandas==1.5.2
+openpyxl==3.0.10

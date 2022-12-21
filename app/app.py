@@ -16,8 +16,8 @@ import sqlalchemy
 import datetime
 import openpyxl
 
-from prettytable import PrettyTable
-from prettytable import from_csv
+# from prettytable import PrettyTable
+# from prettytable import from_csv
 
 
 app = Flask(__name__)
