@@ -1,0 +1,33 @@
+upstream app {
+    server ${NGINX_PYTHON_APP_HOST}:${NGINX_PYTHON_APP_PORT};
+}
+
+server {
+    listen ${NGINX_PORT};
+    server_name ${NGINX_HOST};
+
+    # Если файла нет, то выдаем код 599, который будет обработан, как указано в секции @no_htpasswd_mode.
+    set $htpasswd_file /etc/nginx/includes/.htpasswd;
+    if (!-f $htpasswd_file) {
+        return 599;
+    }
+
+    location / {
+        auth_basic on;
+        auth_basic_user_file $htpasswd_file;
+
+        include includes/access.conf*;
+        include includes/proxy.conf;
+        include includes/local.conf*;
+    }
+
+    error_page 599 = @no_htpasswd_mode;
+    location @no_htpasswd_mode {
+        include includes/access.conf*;
+        include includes/proxy.conf;
+        include includes/local.conf*;
+    }
+
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+}

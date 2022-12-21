@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  tg-scoring-bot-python:
+    build:
+      context: ./.docker/python
+    container_name: tg-scoring-bot-python
+    command: "flask --app app run --host=0.0.0.0"
+    volumes:
+      - ./app:/app
+    networks:
+      - tg-scoring-bot
+      - vayvnd-db
+
+  tg-scoring-bot-nginx:
+    build: ./.docker/nginx
+    depends_on:
+      - tg-scoring-bot-python
+    volumes:
+      - ./.docker/volumes/nginx/logs/:/var/log/nginx
+    environment:
+      - VIRTUAL_HOST=${NGINX_HOST}
+      - VIRTUAL_PORT=${NGINX_PORT}
+      - VIRTUAL_NETWORK=proxy
+      - LETSENCRYPT_HOST=${NGINX_HOST}
+      - LETSENCRYPT_EMAIL=${CERT_EMAIL}
+      - NGINX_HOST=${NGINX_HOST}
+      - NGINX_PORT=${NGINX_PORT}
+      - NGINX_PYTHON_APP_HOST=tg-scoring-bot-python
+      - NGINX_PYTHON_APP_PORT=5000
+    depends_on:
+      - tg-scoring-bot-python
+    networks:
+      - tg-scoring-bot
+      - proxy
+
+networks:
+  tg-scoring-bot:
+  vayvnd-db:
+    name: vayvnd-db
+    external: true
+  proxy:
+    name: proxy
+    external: true

@@ -1,0 +1,10 @@
+*.idea*
+*target*
+*.iml*
+build
+*.log*
+repository
+.env
+*.xlsx*
+*.csv*
+__pycache__
