@@ -1,6 +1,6 @@
 # Repository for Bot
-[Ветка - master](https://gitlab.wiam.ru/tests/tg-scoring-bot/tree/master) , 
-[Ветка - dev](https://gitlab.wiam.ru/tests/tg-scoring-bot/tree/bot_dev)
+[Ветка - main](https://github.com/QAlman/flask_python/tree/main) , 
+[Ветка - dev](https://github.com/QAlman/flask_python/tree/site_dev)
 
 
 # Краткое описание
